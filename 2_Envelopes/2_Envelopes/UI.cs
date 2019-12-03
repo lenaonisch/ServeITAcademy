@@ -24,5 +24,14 @@ namespace _2_Envelopes
             Trace.WriteLine("Answer entered: {0}", answer);
             return answer == "YES" || answer == "Y";
         }
+
+        public static bool ValidateArgs(out double a, out double b, out double c, out double d)
+        {
+            a = 0;
+            b = 0;
+            c = 0;
+            d = 0;
+            return UI.InputDouble(out a) && UI.InputDouble(out b) && UI.InputDouble(out c) && UI.InputDouble(out d);
+        }
     }
 }
