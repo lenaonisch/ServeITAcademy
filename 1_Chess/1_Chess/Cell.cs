@@ -6,20 +6,13 @@ using System.Threading.Tasks;
 
 namespace _1_Chess
 {
-    struct Cell : ICloneable
+    class Cell
     {
-        public CellType content { get; set; }
-        public CellColor color { get; set; }
+        public CellColor Color { get; set; }
 
-        public Cell(CellType content, CellColor color)
+        public Cell(CellColor color)
         {
-            this.content = content;
-            this.color = color;
-        }
-
-        public object Clone()
-        {
-            return new Cell(content, color);
+            Color = color;
         }
     }
 }

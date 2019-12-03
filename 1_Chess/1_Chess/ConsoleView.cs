@@ -10,11 +10,11 @@ namespace _1_Chess
     {
         public void PrintField(ChessField field)
         {
-            for (int j = 0; j < field.height; j++)
+            for (int j = 0; j < field.Height; j++)
             {
-                for (int i = 0; i < field.width; i++)
+                for (int i = 0; i < field.Width; i++)
                 {
-                    switch (field.cells[j, i].color)
+                    switch (field[i, j].Color)
                     {
                         case CellColor.White:
                             Console.Write('*');
@@ -26,6 +26,12 @@ namespace _1_Chess
                 }
                 Console.WriteLine();
             }
+            Console.ReadLine();
+        }
+
+        public void PrintHelp()
+        {
+            Console.WriteLine("Please enter 2 positive numbers: first is height, second is width");
         }
     }
 }

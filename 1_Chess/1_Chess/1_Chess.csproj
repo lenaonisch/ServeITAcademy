@@ -60,12 +60,12 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="CellColor.cs" />
-    <Compile Include="CellType.cs" />
     <Compile Include="ChessField.cs" />
     <Compile Include="ConsoleView.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,23 +10,20 @@ namespace _1_Chess
     {
         static void Main(string[] args)
         {
-            uint height = 8;
-            uint width = 8;
-            if (!uint.TryParse(args[0], out height) || !uint.TryParse(args[1], out width))
+            uint height;
+            uint width;
+            IView consoleView = new ConsoleView();
+
+            if (UI.ValidateArgs(args, out height, out width))
             {
-                PrintHelp();
+                consoleView.PrintHelp();
             }
             else
-            {
-                ConsoleView consoleView = new ConsoleView();
-                consoleView.PrintField(new ChessField(height, width));
-                Console.ReadLine();
+            { 
+                consoleView.PrintField(new ChessField(height, width)); 
             }
         }
 
-        static void PrintHelp()
-        {
-            Console.WriteLine("Please enter 2 positive numbers: first is height, second is width");
-        }
+        
     }
 }

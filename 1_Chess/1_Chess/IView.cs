@@ -9,5 +9,6 @@ namespace _1_Chess
     interface IView
     {
         void PrintField(ChessField field);
+        void PrintHelp();
     }
 }

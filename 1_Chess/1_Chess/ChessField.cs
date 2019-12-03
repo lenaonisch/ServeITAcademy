@@ -8,38 +8,55 @@ namespace _1_Chess
 {
     class ChessField
     {
-        public uint width { get; set; }
-        public uint height { get; set; }
-        public Cell[,] cells { get; set; }
+        public uint Width { get; set; }
+        public uint Height { get; set; }
+        private Cell[,] Cells { get; set; }
+
+        public Cell this[char letter, int digit] // 'a' = 97
+        {
+            get
+            {
+                int columnIndex = letter.ToString().ToLower()[0] - 97;
+                return Cells[digit, columnIndex];
+            }
+        }
+
+        public Cell this[int columnIndex, int digit]
+        {
+            get
+            {
+                return Cells[digit, columnIndex];
+            }
+        }
 
         public ChessField(uint height, uint width)
         {
-            Cell emptyBlack = new Cell(CellType.Empty, CellColor.Black);
-            Cell emptyWhite = new Cell(CellType.Empty, CellColor.White);
+            Cell emptyBlack = new Cell(CellColor.Black);
+            Cell emptyWhite = new Cell(CellColor.White);
 
-            this.width = width;
-            this.height = height;
-            cells = new Cell[height, width];
+            this.Width = width;
+            this.Height = height;
+            Cells = new Cell[height, width];
             for (int j = 0; j < height; j += 2)
             {
                 for (int i = 0; i < width; i += 2)
                 {
-                    cells[j, i] = emptyWhite;
+                    Cells[j, i] = emptyWhite;
                 }
                 for (int i = 1; i < width; i += 2)
                 {
-                    cells[j, i] = emptyBlack;
+                    Cells[j, i] = emptyBlack;
                 }
             }
             for (int j = 1; j < height; j += 2)
             {
                 for (int i = 0; i < width; i += 2)
                 {
-                    cells[j, i] = emptyBlack;
+                    Cells[j, i] = emptyBlack;
                 }
                 for (int i = 1; i < width; i += 2)
                 {
-                    cells[j, i] = emptyWhite;
+                    Cells[j, i] = emptyWhite;
                 }
             }
         }
