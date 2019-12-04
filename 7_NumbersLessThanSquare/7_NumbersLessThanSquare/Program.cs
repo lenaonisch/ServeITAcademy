@@ -11,9 +11,10 @@ namespace _7_NumbersLessThanSquare
         static void Main(string[] args)
         {
             ulong n;
-            if (ulong.TryParse(args[0], out n) && n > 0)
+            if (UI.ValidateArgs(args[0], out n))
             {
                 UI.PrintSequence(Sequence.GetSqrtLessThanN(n));
+                UI.WaitUser();
             }
             else
             {

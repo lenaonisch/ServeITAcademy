@@ -11,7 +11,7 @@ namespace _7_NumbersLessThanSquare
         public static IEnumerable<ulong> GetSqrtLessThanN(ulong n)
         {
             ulong currentNumber = 1;
-            while (Math.Pow(currentNumber, 2) < n)
+            while (currentNumber * currentNumber < n)
             {
                 yield return currentNumber++;
             }
