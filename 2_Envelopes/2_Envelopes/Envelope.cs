@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2_Envelopes
 {
-    struct Envelope
+    class Envelope : IComparable
     {
         const string SIDE_LESS_THAN_ZERO = "Side is less or equal zero";
+        const string OBJECT_NOT_LETTER = "Object is not Envelope";
 
-        public double width { get; private set; }
-        public double height { get; private set; }
+        public double Width { get; private set; }
+        public double Height { get; private set; }
 
         public Envelope(double side1, double side2)
         {
@@ -21,14 +18,42 @@ namespace _2_Envelopes
             }
             if (side1 < side2)
             {
-                height = side1;
-                width = side2;
+                Height = side1;
+                Width = side2;
             }
             else
             {
-                height = side2;
-                width = side1;
+                Height = side2;
+                Width = side1;
             }
+        }
+
+        public int CompareTo(object obj)
+        {
+            Envelope second = obj as Envelope;
+            if (second != null)
+            {
+                if (Width < second.Width && Height < second.Height)
+                {
+                    return -1;
+                }
+                if (Width > second.Width && Height > second.Height)
+                {
+                    return 1;
+                }
+                if (Width == second.Width && Height == second.Height)
+                {
+                    return 0;
+                }
+            }
+
+            throw new ArgumentException(OBJECT_NOT_LETTER);
+        }
+
+        public bool IsPackable(Envelope secondEnvelope)
+        {
+            int lessOrBigger = this.CompareTo(secondEnvelope);
+            return lessOrBigger == -1 || lessOrBigger == 1;
         }
     }
 }
