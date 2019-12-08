@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5_NumberToWords", "5_NumberToWords\5_NumberToWords.csproj", "{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberConverterUnitTests", "NumberConverterUnitTests\NumberConverterUnitTests.csproj", "{44ADE118-5734-42B0-98CE-245EB3E56200}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44ADE118-5734-42B0-98CE-245EB3E56200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44ADE118-5734-42B0-98CE-245EB3E56200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44ADE118-5734-42B0-98CE-245EB3E56200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ADE118-5734-42B0-98CE-245EB3E56200}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
