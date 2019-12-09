@@ -7,11 +7,12 @@ namespace _5_NumberToWords
         private const string NUMBER_GREATER_THAT_TWO_DOZENS = "Requested number is more than nineteen!";
 
         #region words
+
         string[] words = {
             "",
             "one",
             "two",
-            "tree",
+            "three",
             "four",
             "five",
             "six",
@@ -29,14 +30,16 @@ namespace _5_NumberToWords
             "eighteen",
             "nineteen"
         };
+
         #endregion
 
-        public virtual string GetWord(int number)
+        protected virtual string GetWord(int number)
         {
             if (number > 19)
             {
                 throw new ArgumentException(NUMBER_GREATER_THAT_TWO_DOZENS);
             }
+
             return words[number];
         }
     }

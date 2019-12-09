@@ -44,12 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Numbers\Hundred.cs" />
+    <Compile Include="Numbers\Million.cs" />
     <Compile Include="Numbers\NumberConverter.cs" />
     <Compile Include="Numbers\FirstTwoDozens.cs" />
-    <Compile Include="Numbers\Thousands.cs" />
+    <Compile Include="Numbers\Thousand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Numbers\Tens.cs" />
+    <Compile Include="Numbers\Dozen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

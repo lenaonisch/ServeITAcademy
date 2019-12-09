@@ -2,24 +2,26 @@
 
 namespace _5_NumberToWords.Numbers
 {
-    public abstract class Thousands : Hundreds
+    public abstract class Thousand : Hundred
     {
-        public override string GetWord(int number)
+        const int THOUSAND = 1000;
+
+        protected override string GetWord(int number)
         {
             List<string> parts = new List<string>();
 
-            if (number / 1000 > 0)
+            if (number / THOUSAND > 0)
             {
-                string thousands = base.GetWord(number / 1000) + " thousand";
+                string thousands = base.GetWord(number / THOUSAND) + " thousand";
                 if (thousands != "")
                 {
                     parts.Add(thousands);
                 }
             }
-            string mod1000 = base.GetWord(number % 1000);
-            if (mod1000 != "")
+            string mod = base.GetWord(number % THOUSAND);
+            if (mod != "")
             {
-                parts.Add(mod1000);
+                parts.Add(mod);
             }
             return string.Join(" ", parts);
         }

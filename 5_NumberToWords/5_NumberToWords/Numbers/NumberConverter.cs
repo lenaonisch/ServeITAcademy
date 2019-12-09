@@ -1,6 +1,6 @@
 ﻿namespace _5_NumberToWords.Numbers
 {
-    public class NumberConverter : Thousands
+    public class NumberConverter : Million
     {
         public string GetStringRepresentation(int number)
         {
