@@ -4,22 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _7_NumbersLessThanSquare
+namespace _7_8_NumberSequence
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ulong n;
-            if (UI.ValidateArgs(args[0], out n))
+            SequenceOperation operation;
+           
+            do
             {
-                UI.PrintSequence(Sequence.GetSqrtLessThanN(n));
-                UI.WaitUser();
-            }
-            else
-            {
-                UI.PrintHelp();
-            }
+                ulong[] arguments;
+
+                UI.PrintMenu();
+                operation = UI.GetOperation();
+                UI.PrintParamHelper(operation);
+                UI.GetArgs(out arguments);
+                UI.PrintSequence(operation(arguments));
+
+            } while (UI.IsProgramContinued());
         }
     }
 }
