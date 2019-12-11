@@ -3,30 +3,30 @@ using System.Text;
 
 namespace _3_Triangles
 {
-    class Triangle : IComparable
+    class Triangle : IComparable<Triangle>
     {
-        private const string NOT_TRIANGLE_ERROR = "Can't compare triangle with NOT a triangle";
+        private const string NO_TRIANGLE_ERROR = "Can't compare triangle with NULL";
         private double _square;
         private double _perimeter;
 
         public string Name { get; private set; }
-        public double A { get; private set; }
-        public double B { get; private set; }
-        public double C { get; private set; }
+        public double SideA { get; private set; }
+        public double SideB { get; private set; }
+        public double SideC { get; private set; }
         
         public Triangle(string name, double sideA, double sideB, double sideC)
         {
             Name = name;
-            A = sideA;
-            B = sideB;
-            C = sideC;
+            SideA = sideA;
+            SideB = sideB;
+            SideC = sideC;
         }
 
         public double Perimeter
         {
             get
             {
-                _perimeter = A + B + C;
+                _perimeter = SideA + SideB + SideC;
                 return _perimeter;
             }
         }
@@ -37,22 +37,22 @@ namespace _3_Triangles
             {
                 double halfPerimeter = Perimeter / 2;
 
-                _square = Math.Sqrt(halfPerimeter * (halfPerimeter - A) * (halfPerimeter - B) * (halfPerimeter - C));
+                _square = Math.Sqrt(halfPerimeter * (halfPerimeter - SideA) * (halfPerimeter - SideB) * (halfPerimeter - SideC));
                 return _square;
             }
         }
 
-        int IComparable.CompareTo(object obj)
+        public int CompareTo(Triangle other)
         {
-            Triangle secondTriangle = obj as Triangle;
-            if (secondTriangle != null)
+            if (other != null)
             {
-                double secondSquare = secondTriangle.Square;
+                double secondSquare = other.Square;
+
                 if (_square < secondSquare)
                 {
                     return -1;
                 }
-                else 
+                else
                 {
                     if (_square > secondSquare)
                     {
@@ -65,7 +65,7 @@ namespace _3_Triangles
                 }
             }
 
-            throw new ArgumentException(NOT_TRIANGLE_ERROR);
+            throw new ArgumentNullException(NO_TRIANGLE_ERROR);
         }
 
         public override string ToString()
