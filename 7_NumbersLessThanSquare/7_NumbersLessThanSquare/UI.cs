@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace _7_8_NumberSequence
 {
@@ -19,14 +18,29 @@ namespace _7_8_NumberSequence
                 outputString.Append(item);
                 outputString.Append(", ");
             }
-            outputString.Replace(", ", "", outputString.Length - lastJunk, lastJunk);
+            if (outputString.Length > 0)
+            {
+                outputString.Replace(", ", "", outputString.Length - lastJunk, lastJunk);
+            }
             Console.WriteLine(outputString);
+
+            #region logging
+
+            string clarification = "Sequence generated: ";
+            StringBuilder logBuilder = new StringBuilder(clarification.Length + outputString.Length);
+            logBuilder.Append(clarification);
+            logBuilder.Append(outputString);
+            Log.Information(logBuilder.ToString());
+
+            #endregion
         }
 
         public static bool IsProgramContinued()
         {
             Console.WriteLine("\n Do you want to continue? Enter 'y' to get enother sequence\n");
             string answer = Console.ReadLine();
+            Log.Information("User continues execution");
+
             return answer == "y";
         }
 
@@ -52,6 +66,7 @@ namespace _7_8_NumberSequence
         public static SequenceOperation GetOperation()
         {
             string answer = Console.ReadLine();
+
             switch (answer)
             {
                 case "1":
@@ -75,6 +90,11 @@ namespace _7_8_NumberSequence
                 if (!ulong.TryParse(splitted[i], out args[i]))
                 {
                     Console.WriteLine(FAILED_TO_PARSE);
+
+                    #region logging
+                    Log.Debug("String parsed: {0}", splitted[i]);
+                    Log.Error(FAILED_TO_PARSE);
+                    #endregion
 
                     return false;
                 }

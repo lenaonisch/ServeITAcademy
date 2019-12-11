@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Serilog;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +31,9 @@ namespace _7_8_NumberSequence
         {
             if (args.Length < 2)
             {
-                throw new ArgumentException(INCORRECT_PARAM_QUANTITY);
+                Log.Error(new ArgumentException(), INCORRECT_PARAM_QUANTITY);
+                yield break;
+                //throw new ArgumentException(INCORRECT_PARAM_QUANTITY);
             }
 
             ulong min = args[0];
@@ -39,7 +41,9 @@ namespace _7_8_NumberSequence
 
             if (min > max)
             {
-                throw new ArgumentException(MIN_LESS_THAN_MAX);
+                Log.Error(new ArgumentException(), MIN_LESS_THAN_MAX);
+                yield break;
+                //throw new ArgumentException(MIN_LESS_THAN_MAX);
             }
             ulong f1 = 1;
             ulong f2 = 1;
