@@ -7,53 +7,31 @@ namespace NumberConverterUnitTests
     {
         NumberConverter Converter = new NumberConverter();
 
-        [Fact]
-        public void FirstDozenTest()
-        {
-            Assert.Equal("", Converter.GetStringRepresentation(0));
-            Assert.Equal("one", Converter.GetStringRepresentation(1));
-            Assert.Equal("nine", Converter.GetStringRepresentation(9));
-        }
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData("one", 1)]
+        [InlineData("nine", 9)]
+        [InlineData("ten", 10)]
+        [InlineData("nineteen", 19)]
+        [InlineData("twenty", 20)]
+        [InlineData("twenty one", 21)]
+        [InlineData("ninety nine", 99)]
+        [InlineData("one hundred", 100)]
+        [InlineData("one hundred one", 101)]
+        [InlineData("two hundred fourty five", 245)]
+        [InlineData("nine hundred ninety nine", 999)]
+        [InlineData("one thousand one", 1001)]
+        [InlineData("five thousand two hundred fourty five", 5245)]
+        [InlineData("nine thousand nine hundred ninety nine", 9999)]
+        [InlineData("one million", 1000000)]
+        [InlineData("one million six hundred fifty four thousand three hundred twenty one",
+                1654321)]
+        [InlineData("nine million nine hundred ninety nine thousand nine hundred ninety nine", 
+                9999999)]
 
-        [Fact]
-        public void SecondDozenTest()
+        public void NumberConverterTest(string expected, int number)
         {
-            Assert.Equal("ten", Converter.GetStringRepresentation(10));
-            Assert.Equal("nineteen", Converter.GetStringRepresentation(19));
-            Assert.Equal("twenty", Converter.GetStringRepresentation(20));
-        }
-
-        [Fact]
-        public void UpToHundredTest()
-        {
-            Assert.Equal("twenty one", Converter.GetStringRepresentation(21));
-            Assert.Equal("ninety nine", Converter.GetStringRepresentation(99));
-            Assert.Equal("one hundred", Converter.GetStringRepresentation(100));
-        }
-
-        [Fact]
-        public void UpToThousandTest()
-        {
-            Assert.Equal("one hundred one", Converter.GetStringRepresentation(101));
-            Assert.Equal("two hundred fourty five", Converter.GetStringRepresentation(245));
-            Assert.Equal("nine hundred ninety nine", Converter.GetStringRepresentation(999));
-        }
-
-        [Fact]
-        public void UpToMillionTest()
-        {
-            Assert.Equal("one thousand one", Converter.GetStringRepresentation(1001));
-            Assert.Equal("five thousand two hundred fourty five", Converter.GetStringRepresentation(5245));
-            Assert.Equal("nine thousand nine hundred ninety nine", Converter.GetStringRepresentation(9999));
-        }
-
-        [Fact]
-        public void UpToBillionTest()
-        {
-            Assert.Equal("one million", Converter.GetStringRepresentation(1000000));
-            Assert.Equal("one million six hundred fifty four thousand three hundred twenty one",
-                Converter.GetStringRepresentation(1654321));
-            Assert.Equal("nine million nine hundred ninety nine thousand nine hundred ninety nine", Converter.GetStringRepresentation(9999999));
+            Assert.Equal(expected, Converter.GetStringRepresentation(number));
         }
     }
 }

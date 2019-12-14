@@ -33,7 +33,7 @@ namespace _5_NumberToWords
 
         #endregion
 
-        protected virtual string GetWord(int number)
+        protected virtual string GetWord(int number, int divider = 100)
         {
             if (number > 19)
             {

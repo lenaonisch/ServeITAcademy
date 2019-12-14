@@ -21,7 +21,7 @@ namespace _5_NumberToWords
             "ninety"
             };
 
-        protected override string GetWord(int number)
+        protected override string GetWord(int number, int divider = 100)
         {
             if (number < TWO_DOZEN)
             {

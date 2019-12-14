@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Numbers\Hundred.cs" />
     <Compile Include="Numbers\Million.cs" />
+    <Compile Include="Numbers\MoreThanHundred.cs" />
     <Compile Include="Numbers\NumberConverter.cs" />
     <Compile Include="Numbers\FirstTwoDozens.cs" />
     <Compile Include="Numbers\Thousand.cs" />
