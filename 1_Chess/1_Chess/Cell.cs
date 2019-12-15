@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace _1_Chess
 {
-    class Cell
+    class Cell : ICloneable
     {
         public CellColor Color { get; set; }
 
         public Cell(CellColor color)
         {
             Color = color;
+        }
+
+        public object Clone()
+        {
+            return new Cell(Color);
         }
     }
 }

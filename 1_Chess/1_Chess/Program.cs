@@ -16,12 +16,13 @@ namespace _1_Chess
 
             if (UI.ValidateArgs(args, out height, out width))
             {
-                consoleView.PrintHelp();
+                consoleView.PrintField(new ChessField(height, width));
             }
             else
-            { 
-                consoleView.PrintField(new ChessField(height, width)); 
+            {
+                consoleView.PrintHelp();
             }
+            Console.Read();
         }
 
         

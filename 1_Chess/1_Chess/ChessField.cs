@@ -16,7 +16,7 @@ namespace _1_Chess
         {
             get
             {
-                int columnIndex = letter.ToString().ToLower()[0] - 97;
+                int columnIndex = ConvertSymbolToIndex(letter);
                 return Cells[digit, columnIndex];
             }
         }
@@ -29,34 +29,44 @@ namespace _1_Chess
             }
         }
 
+        public int ConvertSymbolToIndex(char letter)
+        {
+            return letter.ToString().ToLower()[0] - 'a';
+        }
+
         public ChessField(uint height, uint width)
+        {
+            this.Width = width;
+            this.Height = height;
+            Cells = new Cell[height, width];
+            FillEmpty();
+        }
+
+        public void FillEmpty()
         {
             Cell emptyBlack = new Cell(CellColor.Black);
             Cell emptyWhite = new Cell(CellColor.White);
 
-            this.Width = width;
-            this.Height = height;
-            Cells = new Cell[height, width];
-            for (int j = 0; j < height; j += 2)
+            for (int j = 0; j < Height; j += 2)
             {
-                for (int i = 0; i < width; i += 2)
+                for (int i = 0; i < Width; i += 2)
                 {
-                    Cells[j, i] = emptyWhite;
+                    Cells[j, i] = (Cell)emptyWhite.Clone();
                 }
-                for (int i = 1; i < width; i += 2)
+                for (int i = 1; i < Width; i += 2)
                 {
-                    Cells[j, i] = emptyBlack;
+                    Cells[j, i] = (Cell)emptyBlack.Clone();
                 }
             }
-            for (int j = 1; j < height; j += 2)
+            for (int j = 1; j < Height; j += 2)
             {
-                for (int i = 0; i < width; i += 2)
+                for (int i = 0; i < Width; i += 2)
                 {
-                    Cells[j, i] = emptyBlack;
+                    Cells[j, i] = (Cell)emptyBlack.Clone();
                 }
-                for (int i = 1; i < width; i += 2)
+                for (int i = 1; i < Width; i += 2)
                 {
-                    Cells[j, i] = emptyWhite;
+                    Cells[j, i] = (Cell)emptyWhite.Clone();
                 }
             }
         }
