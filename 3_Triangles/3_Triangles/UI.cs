@@ -8,7 +8,7 @@ namespace _3_Triangles
     class UI
     {
         const int NUMBER_OF_PARAMETERS = 4;
-        const string INVALID_TRIANGLE = "Triangle is invalid!";
+        
         const string INVALID_DOUBLE = "Can't convert some string into floating point number!";
 
         public static Triangle GetNewTriangle()
@@ -34,14 +34,13 @@ namespace _3_Triangles
                 && double.TryParse(dividedInput[2], out B)
                 && double.TryParse(dividedInput[3], out C))
             {
-                result = new Triangle(dividedInput[0], A, B, C);
-                TriangleValidator validator = new TriangleValidator();
-                ValidationResult validationResult = validator.Validate(result);
-
-                if (!validationResult.IsValid)
+                try
                 {
-                    result = null;
-                    Console.WriteLine(INVALID_TRIANGLE);
+                    result = Triangle.CreateNewTriangle(dividedInput[0], A, B, C);
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
             else

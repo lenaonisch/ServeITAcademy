@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Text;
+using FluentValidation.Results;
 
 namespace _3_Triangles
 {
-    class Triangle : IComparable<Triangle>
+     public class Triangle : IComparable<Triangle>, ICloneable
     {
         private const string NO_TRIANGLE_ERROR = "Can't compare triangle with NULL";
+        const string INVALID_TRIANGLE = "Triangle is invalid!";
         private double _square;
         private double _perimeter;
 
@@ -14,12 +16,26 @@ namespace _3_Triangles
         public double SideB { get; private set; }
         public double SideC { get; private set; }
         
-        public Triangle(string name, double sideA, double sideB, double sideC)
+        private Triangle(string name, double sideA, double sideB, double sideC)
         {
             Name = name;
             SideA = sideA;
             SideB = sideB;
             SideC = sideC;
+        }
+
+        public static Triangle CreateNewTriangle(string name, double sideA, double sideB, double sideC)
+        {
+            Triangle result = new Triangle(name, sideA, sideB, sideC);
+            TriangleValidator validator = new TriangleValidator();
+            ValidationResult validationResult = validator.Validate(result);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException(INVALID_TRIANGLE);
+            }
+
+            return result;
         }
 
         public double Perimeter
@@ -74,6 +90,11 @@ namespace _3_Triangles
             sb.AppendFormat("[Triangle {0}]: {1:0.00}\n", Name, _square);
 
             return sb.ToString();
+        }
+
+        public object Clone()
+        {
+            return new Triangle(Name, SideA, SideB, SideC);
         }
     }
 }

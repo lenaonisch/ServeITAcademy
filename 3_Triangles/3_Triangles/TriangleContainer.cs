@@ -6,15 +6,40 @@ using System.Text;
 
 namespace _3_Triangles
 {
-    class TriangleContainer : IEnumerable<Triangle>
+    public class TriangleContainer : IEnumerable<Triangle>
     {
         private const string TRIANGLE_IS_NULL = "Triangle is null. Nothing was added";
+        private const string INDEX_OUT_OF_RANGE = "Invalid index";
 
         private List<Triangle> _triangles;
 
         public TriangleContainer(int count = 0)
         {
             _triangles = new List<Triangle>(count);
+        }
+
+        public TriangleContainer(IEnumerable<Triangle> triangles)
+        {
+            _triangles = new List<Triangle>();
+            foreach (Triangle tr in triangles)
+            {
+                _triangles.Add((Triangle)tr.Clone());
+            }
+        }
+
+        public Triangle this[int i]
+        {
+            get
+            {
+                if (i < _triangles.Count)
+                {
+                    return _triangles[i];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(INDEX_OUT_OF_RANGE);
+                }
+            }
         }
 
         public void Add(Triangle triangle)
