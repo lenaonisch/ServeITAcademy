@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using Serilog;
+using _7_NumbersLessThanSquare.SequenceHandlers;
 
 namespace _7_8_NumberSequence
 {
@@ -51,31 +52,31 @@ namespace _7_8_NumberSequence
             Console.WriteLine("     2 - to get Fibonacci sequence");
         }
 
-        public static void PrintParamHelper(SequenceOperation operation)
+        public static void PrintParamHelper(HandlerKind operation)
         {
-            if (operation == Sequence.GetFibonacciSequence)
+            if (operation == HandlerKind.Fibonacci)
             {
                 Console.WriteLine("Enter ranges (min and max) divided with blank:");
             }
-            if (operation == Sequence.GetSqrtLessThanN)
+            if (operation == HandlerKind.NumbersSquaresLessThanN)
             {
                 Console.WriteLine("Enter N - max value for squares of printed numbers");
             }
         }
 
-        public static SequenceOperation GetOperation()
+        public static HandlerKind GetOperation()
         {
             string answer = Console.ReadLine();
 
             switch (answer)
             {
                 case "1":
-                    return Sequence.GetSqrtLessThanN;
+                    return HandlerKind.NumbersSquaresLessThanN;
                 case "2":
-                    return Sequence.GetFibonacciSequence;
+                    return HandlerKind.Fibonacci;
                 default:
                     PrintMenu();
-                    return null;
+                    return HandlerKind.Empty;
             }
         }
 

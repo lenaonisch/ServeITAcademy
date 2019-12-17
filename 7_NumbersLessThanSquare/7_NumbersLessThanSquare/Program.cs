@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using _7_NumbersLessThanSquare.SequenceHandlers;
 using System.Reflection;
 using Serilog;
 using System.IO;
@@ -12,7 +12,11 @@ namespace _7_8_NumberSequence
     {
         static void Main(string[] args)
         {
-            SequenceOperation operation;
+            HandlerKind operation;
+            SequenceHandler fibHandler = new FibonacciSequenceHandler();
+            SequenceHandler squaresHandler = new SquaresLessThanNSequenceHandler();
+            fibHandler.SetNextHandler(squaresHandler);
+
             StartLogging();
 
             do
@@ -21,11 +25,12 @@ namespace _7_8_NumberSequence
 
                 UI.PrintMenu();
                 operation = UI.GetOperation();
-                if (operation != null)
+                if (operation != HandlerKind.Empty)
                 {
                     UI.PrintParamHelper(operation);
                     UI.GetArgs(out arguments);
-                    UI.PrintSequence(operation(arguments));
+                    HandlerParameters parameters = new HandlerParameters(operation, arguments);
+                    UI.PrintSequence(fibHandler.Handle(parameters));
                 }
 
             } while (UI.IsProgramContinued());
@@ -45,7 +50,7 @@ namespace _7_8_NumberSequence
             
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.File($@"\\{appDirectory}\\{logDirectory}\\{logFileName}").CreateLogger();
+                .WriteTo.File($@"{appDirectory}\\{logDirectory}\\{logFileName}").CreateLogger();
         }
 
         static void FinishLogging()
