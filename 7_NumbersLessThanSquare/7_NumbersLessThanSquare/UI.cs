@@ -14,14 +14,17 @@ namespace _7_8_NumberSequence
         {
             short lastJunk = 2;
             StringBuilder outputString = new StringBuilder();
-            foreach (var item in sequence)
+            if (sequence != null)
             {
-                outputString.Append(item);
-                outputString.Append(", ");
-            }
-            if (outputString.Length > 0)
-            {
-                outputString.Replace(", ", "", outputString.Length - lastJunk, lastJunk);
+                foreach (var item in sequence)
+                {
+                    outputString.Append(item);
+                    outputString.Append(", ");
+                }
+                if (outputString.Length > 0)
+                {
+                    outputString.Replace(", ", "", outputString.Length - lastJunk, lastJunk);
+                }
             }
             Console.WriteLine(outputString);
 
