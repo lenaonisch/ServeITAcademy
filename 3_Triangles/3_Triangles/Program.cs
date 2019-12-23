@@ -6,7 +6,7 @@ namespace _3_Triangles
     {
         static void Main(string[] args)
         {
-            TriangleContainer triangles = UI.GetTriangles();
+            SortedTriangleContainer triangles = UI.GetTriangles();
             triangles.OrderByDescending();
             UI.PrintTriangles(triangles);
             Console.ReadLine();

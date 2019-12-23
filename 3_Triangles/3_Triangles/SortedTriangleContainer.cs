@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace _3_Triangles
 {
-    public class TriangleContainer : IEnumerable<Triangle>
+    public class SortedTriangleContainer : IEnumerable<Triangle>
     {
         private const string TRIANGLE_IS_NULL = "Triangle is null. Nothing was added";
         private const string INDEX_OUT_OF_RANGE = "Invalid index";
 
         private List<Triangle> _triangles;
+        private bool _isSorted;
 
-        public TriangleContainer(int count = 0)
+        public SortedTriangleContainer(int count = 0)
         {
             _triangles = new List<Triangle>(count);
+            _isSorted = false;
         }
 
-        public TriangleContainer(IEnumerable<Triangle> triangles)
+        public SortedTriangleContainer(IEnumerable<Triangle> triangles)
         {
             _triangles = new List<Triangle>();
             foreach (Triangle tr in triangles)
             {
                 _triangles.Add((Triangle)tr.Clone());
             }
+            _isSorted = false;
         }
 
         public Triangle this[int i]
@@ -47,6 +49,7 @@ namespace _3_Triangles
             if (triangle != null)
             {
                 _triangles.Add(triangle);
+                _isSorted = false;
             }
             else
             {
@@ -58,19 +61,28 @@ namespace _3_Triangles
 
         public IEnumerator<Triangle> GetEnumerator()
         {
+            if (!_isSorted)
+            {
+                _triangles.Sort((x, y) => -x.CompareTo(y));
+                _isSorted = true;
+            }
             return _triangles.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _triangles.GetEnumerator();
+            return this.GetEnumerator();
         }
 
         #endregion
 
         public void OrderByDescending()
         {
-            _triangles = _triangles.OrderByDescending(triangle => triangle.Square).ToList();
+            if (!_isSorted)
+            {
+                _triangles.Sort((x, y) => -x.CompareTo(y));
+                _isSorted = true;
+            }
         }
 
         public override string ToString()

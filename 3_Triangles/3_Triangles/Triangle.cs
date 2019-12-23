@@ -51,9 +51,13 @@ namespace _3_Triangles
         {
             get
             {
-                double halfPerimeter = Perimeter / 2;
+                if (_square == 0)
+                {
+                    double halfPerimeter = Perimeter / 2;
 
-                _square = Math.Sqrt(halfPerimeter * (halfPerimeter - SideA) * (halfPerimeter - SideB) * (halfPerimeter - SideC));
+                    _square = Math.Sqrt(halfPerimeter * (halfPerimeter - SideA) * (halfPerimeter - SideB) * (halfPerimeter - SideC));
+                }
+
                 return _square;
             }
         }
@@ -64,13 +68,13 @@ namespace _3_Triangles
             {
                 double secondSquare = other.Square;
 
-                if (_square < secondSquare)
+                if (Square < secondSquare)
                 {
                     return -1;
                 }
                 else
                 {
-                    if (_square > secondSquare)
+                    if (Square > secondSquare)
                     {
                         return 1;
                     }
@@ -87,7 +91,7 @@ namespace _3_Triangles
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("[Triangle {0}]: {1:0.00}\n", Name, _square);
+            sb.AppendFormat("[Triangle {0}]: {1:0.00}\n", Name, Square);
 
             return sb.ToString();
         }

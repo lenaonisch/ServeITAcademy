@@ -10,6 +10,8 @@ namespace _3_Triangles
         const int NUMBER_OF_PARAMETERS = 4;
         
         const string INVALID_DOUBLE = "Can't convert some string into floating point number!";
+        static string INCORRECT_PARAMS_COUNT = "Incorrect parameters count! Should be " + NUMBER_OF_PARAMETERS.ToString();
+
 
         public static Triangle GetNewTriangle()
         {
@@ -23,38 +25,41 @@ namespace _3_Triangles
 
             Console.WriteLine("Enter triangle in format: <name>, <side 1>, <side 2>, <side 3>");
 
-            do
+            userInput = Console.ReadLine();
+            dividedInput = userInput.Split(',').ToList();
+            dividedInput = dividedInput.Select(str => str.Trim(' ', '\t')).ToList();
+            if (dividedInput.Count() < numberOfParameters)
             {
-                userInput = Console.ReadLine();
-                dividedInput = userInput.Split(',').ToList();
-                dividedInput = dividedInput.Select(str => str.Trim(' ', '\t')).ToList();
-            } while (dividedInput.Count() < numberOfParameters);
-
-            if (double.TryParse(dividedInput[1], out A)
-                && double.TryParse(dividedInput[2], out B)
-                && double.TryParse(dividedInput[3], out C))
-            {
-                try
-                {
-                    result = Triangle.CreateNewTriangle(dividedInput[0], A, B, C);
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                Console.WriteLine(INCORRECT_PARAMS_COUNT);
             }
             else
             {
-                Console.WriteLine(INVALID_DOUBLE);
+                if (double.TryParse(dividedInput[1], out A)
+                && double.TryParse(dividedInput[2], out B)
+                && double.TryParse(dividedInput[3], out C))
+                {
+                    try
+                    {
+                        result = Triangle.CreateNewTriangle(dividedInput[0], A, B, C);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(INVALID_DOUBLE);
+                }
             }
-
+           
             return result;
         }
 
-        public static TriangleContainer GetTriangles()
+        public static SortedTriangleContainer GetTriangles()
         {
             string userAnswer = "y";
-            TriangleContainer triangles = new TriangleContainer();
+            SortedTriangleContainer triangles = new SortedTriangleContainer();
 
             while (userAnswer == "y" || userAnswer == "yes")
             {
@@ -70,7 +75,7 @@ namespace _3_Triangles
             return triangles;
         }
 
-        public static void PrintTriangles(TriangleContainer triangles)
+        public static void PrintTriangles(SortedTriangleContainer triangles)
         {
             Console.WriteLine(triangles.ToString());
         }

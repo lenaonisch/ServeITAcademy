@@ -43,7 +43,7 @@ namespace UnitTests
                 tr1, tr2, tr3
             };
 
-            TriangleContainer triangleContainer = new TriangleContainer(triangles);
+            SortedTriangleContainer triangleContainer = new SortedTriangleContainer(triangles);
 
             triangleContainer.OrderByDescending();
 
