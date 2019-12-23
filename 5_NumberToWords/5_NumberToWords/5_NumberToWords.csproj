@@ -43,12 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Numbers\MoreThanHundred.cs" />
+    <Compile Include="Numbers\MoreThanHundredProcessor.cs" />
+    <Compile Include="Numbers\SignProcessor.cs" />
     <Compile Include="Numbers\NumberConverter.cs" />
-    <Compile Include="Numbers\FirstTwoDozens.cs" />
+    <Compile Include="Numbers\FirstTwoDozensProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Numbers\Dozen.cs" />
+    <Compile Include="Numbers\DozenProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

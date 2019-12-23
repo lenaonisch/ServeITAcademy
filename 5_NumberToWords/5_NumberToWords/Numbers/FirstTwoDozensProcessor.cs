@@ -2,9 +2,10 @@
 
 namespace _5_NumberToWords
 {
-    public abstract class FirstTwoDozens
+    internal class FirstTwoDozensProcessors
     {
         private const string NUMBER_GREATER_THAT_TWO_DOZENS = "Requested number is more than nineteen!";
+        protected const string ZERO = "zero";
 
         #region words
 
@@ -33,7 +34,7 @@ namespace _5_NumberToWords
 
         #endregion
 
-        protected virtual string GetWord(int number, int divider = 100)
+        public virtual string GetWord(int number, int divider = 100)
         {
             if (number > 19)
             {

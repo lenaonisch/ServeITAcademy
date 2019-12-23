@@ -1,10 +1,12 @@
 ﻿namespace _5_NumberToWords.Numbers
 {
-    public class NumberConverter : MoreThanHundred
+    public class NumberConverter
     {
-        public string GetStringRepresentation(int number)
+        static SignProcessor processor = new SignProcessor();
+
+        public static string GetStringRepresentation(int number)
         {
-            return base.GetWord(number);
+            return processor.GetWord(number);
         }
     }
 }

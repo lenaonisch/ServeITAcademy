@@ -2,7 +2,7 @@
 
 namespace _5_NumberToWords
 {
-     public abstract class Dozen : FirstTwoDozens
+     internal class DozenProcessor : FirstTwoDozensProcessors
      {
         private const string INVALID_DOZEN = "Invalid dozen. Should be less than 90";
         private const int TEN = 10;
@@ -13,7 +13,7 @@ namespace _5_NumberToWords
             "",
             "twenty",
             "thirty",
-            "fourty",
+            "forty",
             "fifty",
             "sixty",
             "seventy",
@@ -21,7 +21,7 @@ namespace _5_NumberToWords
             "ninety"
             };
 
-        protected override string GetWord(int number, int divider = 100)
+        public override string GetWord(int number, int divider = 100)
         {
             if (number < TWO_DOZEN)
             {

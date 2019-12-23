@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _5_NumberToWords.Numbers
 {
-    public class MoreThanHundred : Dozen
+    internal class MoreThanHundredProcessor : DozenProcessor
     {
         private List<KeyValuePair<int, string>> _ranks = new List<KeyValuePair<int, string>>()
         {
+            new KeyValuePair<int, string>( 1000000000, " billion" ),
             new KeyValuePair<int, string>( 1000000, " million" ),
             new KeyValuePair<int, string>( 1000, " thousand" ),
             new KeyValuePair<int, string>( 100, " hundred" )
         };
 
-        protected override string GetWord(int number, int divider = 1000000)
+        public override string GetWord(int number, int divider = 1000000000)
         {    
             while(number >= _ranks.Last().Key)
             {
@@ -25,7 +23,7 @@ namespace _5_NumberToWords.Numbers
                     if (dividersInNumber != "")
                     {
                         string tail = this.GetWord(number % divider);
-                        if (tail != "")
+                        if (tail != ZERO)
                         {
                             return dividersInNumber + " " + tail;
                         }
