@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3AFAD6F4-73CB-48E6-86B1-879ECB2322D9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_5_NumberToWords</RootNamespace>
-    <AssemblyName>5_NumberToWords</AssemblyName>
+    <RootNamespace>NumberConverterApplication</RootNamespace>
+    <AssemblyName>NumberConverterApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Numbers\MoreThanHundredProcessor.cs" />
-    <Compile Include="Numbers\SignProcessor.cs" />
-    <Compile Include="Numbers\NumberConverter.cs" />
-    <Compile Include="Numbers\FirstTwoDozensProcessor.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Numbers\DozenProcessor.cs" />
+    <Compile Include="UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ConverterClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\5_NumberToWords\5_NumberToWords.csproj">
+      <Project>{3afad6f4-73cb-48e6-86b1-879ecb2322d9}</Project>
+      <Name>5_NumberToWords</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

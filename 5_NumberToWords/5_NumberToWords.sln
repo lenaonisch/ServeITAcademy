@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5_NumberToWords", "5_Number
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberConverterUnitTests", "NumberConverterUnitTests\NumberConverterUnitTests.csproj", "{44ADE118-5734-42B0-98CE-245EB3E56200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberConverterApplication", "NumberConverterApplication\NumberConverterApplication.csproj", "{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{44ADE118-5734-42B0-98CE-245EB3E56200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44ADE118-5734-42B0-98CE-245EB3E56200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44ADE118-5734-42B0-98CE-245EB3E56200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011CF120-6D5D-48C6-9E20-9E9E4BAD1E40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
