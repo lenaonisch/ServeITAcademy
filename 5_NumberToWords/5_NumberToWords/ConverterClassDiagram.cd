@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_5_NumberToWords.FirstTwoDozensProcessors">
+    <Position X="4" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAAAAAAQE=</HashCode>
+      <FileName>Numbers\FirstTwoDozensProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_5_NumberToWords.DozenProcessor">
+    <Position X="4" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAEAAAAAAAAAgAACAAAABAAAA=</HashCode>
+      <FileName>Numbers\DozenProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_5_NumberToWords.Numbers.MoreThanHundredProcessor">
+    <Position X="4" Y="4" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Numbers\MoreThanHundredProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_5_NumberToWords.Numbers.SignProcessor">
+    <Position X="4" Y="5.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Numbers\SignProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_5_NumberToWords.Numbers.NumberConverter">
+    <Position X="0.75" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Numbers\NumberConverter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="processor" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
