@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using TravelAgencyHelper.Models;
 
 namespace TravelAgencyHelper.Data
@@ -13,5 +14,6 @@ namespace TravelAgencyHelper.Data
         { }
 
         public DbSet<Route> Routes { get; set; }
+        public DbSet<DaysInRoute> DaysInRoutes { get; set; }
     }
 }

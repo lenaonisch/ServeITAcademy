@@ -8,6 +8,7 @@ namespace TravelAgencyHelper.Models
     public interface ITravelAgencyRepository
     {
         IQueryable<Route> Routes { get; }
+        IQueryable<DaysInRoute> DaysOfRoute(int routeID);
         IQueryable<DaysInRoute> DaysInRoutes { get; }
     }
 }

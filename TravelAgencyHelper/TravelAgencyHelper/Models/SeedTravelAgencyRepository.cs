@@ -17,12 +17,11 @@ namespace TravelAgencyHelper.Models
             }
         }
 
-        public IQueryable<DaysInRoute> DaysInRoutes
+        public IQueryable<DaysInRoute> DaysInRoutes => SeedData.daysInRoutes.AsQueryable<DaysInRoute>();
+
+        public IQueryable<DaysInRoute> DaysOfRoute(int routeID)
         {
-            get 
-            {
-                return SeedData.daysInRoutes.AsQueryable<DaysInRoute>(); 
-            }
+            return SeedData.daysInRoutes.Where(day => day.Route.Id == routeID).AsQueryable<DaysInRoute>();
         }
     }
 }

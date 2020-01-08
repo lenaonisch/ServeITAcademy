@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelAgencyHelper.Models
 {
     public class DaysInRoute
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public int DayBySequence { get; set; }
         public Route Route { get; set; }
         public string Country { get; set; }
