@@ -30,7 +30,8 @@ namespace TravelAgencyHelper
         {
             services.AddDbContext<TravelAgencyContext>(opt =>
                 opt.UseSqlServer(Configuration["Data:TravelAgency:ConnectionString"]));
-            services.AddTransient<ITravelAgencyRepository, EFTravelAgencyRepository>();
+            services.AddTransient<IRoutesRepository, EFRoutesRepository>();
+            services.AddTransient<IGenericRepository<DaysInRoute>, EFDaysInRoutesRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -38,10 +39,19 @@ namespace TravelAgencyHelper
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc(routes => {
-                routes.MapRoute(name: "default", template: "{controller=Route}/{action=Get}/{id?}");
-                routes.MapRoute(name: "Days", template: "{controller=DaysInRoutes}/{action=Get}/{routeID?}");
+                routes.MapRoute(
+                    name: "default", 
+                    template: "{controller=Route}/{action=Get}/{id?}");
+                routes.MapRoute(
+                    name: "FullRoute",
+                    template: "{controller}/{action}/{id}"
+                    /*defaults: new { Controller = "Route", action = "GetFullRoute" }*/);
+                //routes.MapRoute(
+                //    name: "DaysInRoutes",
+                //    template: "{controller=DaysInRoutes}/{action=Get}/{id?}"
+                //    defaults: new { Controller = "Route", action = "GetFullRoute" });
             });
             SeedData.EnsurePopulated(app);
         }

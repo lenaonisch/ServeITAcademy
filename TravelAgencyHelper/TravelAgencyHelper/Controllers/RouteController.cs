@@ -9,12 +9,12 @@ using TravelAgencyHelper.Models;
 
 namespace TravelAgencyHelper.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class RouteController : Controller
     {
-        ITravelAgencyRepository repository;
+        IRoutesRepository repository;
 
-        public RouteController(ITravelAgencyRepository repo)
+        public RouteController(IRoutesRepository repo)
         {
             repository = repo;
         }
@@ -23,14 +23,14 @@ namespace TravelAgencyHelper.Controllers
         [HttpGet]
         public IEnumerable<Route> Get()
         {
-            return repository.Routes;
+            return repository.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public Route Get(int id)
         {
-            return repository.Routes.Where(t=> t.Id == id).FirstOrDefault();
+            return repository.FindById(id);
         }
 
         // POST api/<controller>
@@ -52,5 +52,13 @@ namespace TravelAgencyHelper.Controllers
         {
             
         }
+
+        // GET: api/<controller/5
+        [HttpGet("{routeID}")]
+        public Route GetFullRoute(int routeID)
+        {
+            return repository.GetRouteWithDays(route=> route.Id == routeID);
+        }
+        
     }
 }

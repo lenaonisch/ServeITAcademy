@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAgencyHelper.Data;
 
 namespace TravelAgencyHelper.Migrations
 {
     [DbContext(typeof(TravelAgencyContext))]
-    partial class TravelAgencyContextModelSnapshot : ModelSnapshot
+    [Migration("20200111184313_IsActive")]
+    partial class IsActive
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace TravelAgencyHelper.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValueSql("1");
 
-                    b.Property<long>("RouteId");
+                    b.Property<long?>("RouteId");
 
                     b.HasKey("Id");
 
@@ -69,10 +71,9 @@ namespace TravelAgencyHelper.Migrations
 
             modelBuilder.Entity("TravelAgencyHelper.Models.DaysInRoute", b =>
                 {
-                    b.HasOne("TravelAgencyHelper.Models.Route")
+                    b.HasOne("TravelAgencyHelper.Models.Route", "Route")
                         .WithMany("Days")
-                        .HasForeignKey("RouteId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RouteId");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>Artiom Chilaru</Authors>
+    <Company>Artiom Chilaru</Company>
+    <Description>Adds basic support for "Upsert" operations to EF Core.
+
+Uses `INSERT … ON CONFLICT DO UPDATE` in PostgreSQL/Sqlite, `MERGE` in SqlServer and `INSERT INTO … ON DUPLICATE KEY UPDATE` in MySQL.
+
+Also supports injecting sql command generators to add support for other providers</Description>
+    <Copyright>Artiom Chilaru © 2019</Copyright>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Upsert</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Upsert</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Entity Framework Core entity-framework-core EF EntityFramework EntityFrameworkCore EFCore Upsert</PackageTags>
+    <VersionPrefix>3.1.0</VersionPrefix>
+    <PackageReleaseNotes>
+v3.1.0
++ Nulable type metadata
++ Adding support for upserting by identity column
++ Splitting the request into multiple queries if the query parameter limit is reached
+
+v3.0.0
+* EF Core 3 support
+
+v2.2.1:      
++ Support for more expressions (Bitwise AND and bitwise OR)
+
+v2.2.0:      
++ Support for more expressions (AND and OR)
++ Support for default column values and expressions
++ Null value handling in generated SQL
+! Patched MySQL syntax for columns that haven't been updated but may be present in expressions
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\certs\FlexLabsStrongKey.snk</AssemblyOriginatorKeyFile>
+    <SignCertificateName>Artiom Chilaru</SignCertificateName>
+    <PostBuildEvent>signtool.exe sign /n "$(SignCertificateName)" /fd sha256 /tr "http://timestamp.digicert.com" /td sha256 FlexLabs.EntityFrameworkCore.Upsert.dll</PostBuildEvent>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EFCoreVersion>2.1.0</EFCoreVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
+    <DefineConstants>$(DefineConstants);EFCORE3</DefineConstants>
+    <EFCoreVersion>3.0.0</EFCoreVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(EFCoreVersion)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

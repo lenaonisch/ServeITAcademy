@@ -19,4 +19,8 @@
     <!--DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0" /-->
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlexLabs.Upsert-develop\src\FlexLabs.EntityFrameworkCore.Upsert\FlexLabs.EntityFrameworkCore.Upsert.csproj" />
+  </ItemGroup>
+
 </Project>

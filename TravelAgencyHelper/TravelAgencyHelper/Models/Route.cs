@@ -14,11 +14,14 @@ namespace TravelAgencyHelper.Models
         public int Price { get; set; }
         public int Deposit { get; set; }
         public string Category { get; set; }
-        //public List<DaysInRoute> Days { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public bool? IsActive { get; set; }
+        public ICollection<DaysInRoute> Days { get; set; }
 
-        //public Route()
-        //{
-        //    Days = new List<DaysInRoute>();
-        //}
+        public Route()
+        {
+            Days = new List<DaysInRoute>();
+            //IsActive = true;
+        }
     }
 }

@@ -9,11 +9,12 @@ using TravelAgencyHelper.Models;
 
 namespace TravelAgencyHelper.Controllers
 {
+    [Route("api/[controller]/[action]")]
     public class DaysInRoutesController : Controller
     {
-        ITravelAgencyRepository repository;
+        IGenericRepository<DaysInRoute> repository;
 
-        public DaysInRoutesController(ITravelAgencyRepository repo)
+        public DaysInRoutesController(IGenericRepository<DaysInRoute> repo)
         {
             repository = repo;
         }
@@ -21,14 +22,15 @@ namespace TravelAgencyHelper.Controllers
         [HttpGet]
         public IEnumerable<DaysInRoute> Get()
         {
-            return repository.DaysInRoutes;
+            return repository.Get();
         }
 
         // GET: api/<controller/5
-        [HttpGet("{routeID}")]
-        public IEnumerable<DaysInRoute> Get(int routeID)
-        {
-            return repository.DaysOfRoute(routeID);
-        }
+        //[HttpGet("{routeID}")]
+        //public IEnumerable<DaysInRoute> Get(int routeID)
+        //{
+        //    return repository.FindById(routeID);
+        //}
+
     }
 }
