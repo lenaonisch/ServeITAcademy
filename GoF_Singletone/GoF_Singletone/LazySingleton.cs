@@ -23,6 +23,7 @@ namespace GoF_Singletone
 
         private class Nested
         {
+            // static ctor is used to make sure instance is created just before 
             static Nested() { }
             internal static readonly LazySingleton _instance = new LazySingleton();
         }
