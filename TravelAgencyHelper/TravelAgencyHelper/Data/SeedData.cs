@@ -33,10 +33,9 @@ namespace TravelAgencyHelper.Data
             TravelAgencyContext context = app.ApplicationServices.GetRequiredService<TravelAgencyContext>();
             context.Database.Migrate();
 
-            foreach (Route route in routes)
-            {
-                 context.Routes.Upsert(route).On(r => r.Name).Run();
-            }
+            
+                 context.Routes.UpsertRange(routes).On(r => r.Name).Run();
+            
 
             Route[] routeforDays = context.Routes.Take(2).ToArray();
             
@@ -45,10 +44,11 @@ namespace TravelAgencyHelper.Data
 
                 daysInRoutes[i].RouteId = routeforDays[i / 2].Id;
 
-                context.DaysInRoutes.Upsert(daysInRoutes[i]).On(d => new { d.RouteId, d.DayBySequence}).Run();
+                
                 
 
             }
+            context.DaysInRoutes.UpsertRange(daysInRoutes).On(d => new { d.RouteId, d.DayBySequence }).Run();
         }
     }
 }
