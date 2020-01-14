@@ -35,6 +35,7 @@ namespace XUnitTravelAgencyHelperTest
     {
         private const string GET_URL = "api/Route/Get/";
         private const string DEL_URL = "api/Route/Delete/";
+        private const string ERASE_URL = "api/Route/Erase/";
         private const string SEARCH_URL = "api/Route/Search/";
         private const string UPDATE_URL = "api/Route/Put/";
         private const string ADD_URL = "api/Route/Post";
@@ -138,7 +139,7 @@ namespace XUnitTravelAgencyHelperTest
             Assert.Equal(result[0].Name, route.Name);
             Assert.Equal(result[0].Category, route.Category);
 
-            await client.DeleteAsync(DEL_URL + result[0].Id);
+            await client.DeleteAsync(ERASE_URL + result[0].Id);
         }
     }
     #endregion

@@ -101,5 +101,13 @@ namespace TravelAgencyHelper.Models
             IQueryable<Route> query = _context.Routes.AsNoTracking().Where(route => predicate(route) && (bool)route.IsActive);
             return query.Include(route => route.Days);
         }
+
+        public void Erase(int id)
+        {
+            Route route = new Route() { Id = id };
+            _context.Routes.Attach(route);
+            _context.Routes.Remove(route);
+            _context.SaveChanges();
+        }
     }
 }

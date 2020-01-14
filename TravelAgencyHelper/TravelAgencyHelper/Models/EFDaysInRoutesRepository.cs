@@ -62,5 +62,10 @@ namespace TravelAgencyHelper.Models
 
             return false;
         }
+
+        public void Erase(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

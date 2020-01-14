@@ -86,6 +86,13 @@ namespace TravelAgencyHelper.Controllers
             }
         }
 
+        // DELETE api/<controller>/5
+        [HttpDelete("{id}")]
+        public void Erase(int id)
+        {
+            repository.Erase(id);
+        }
+
         // GET: api/<controller/5
         [HttpGet("{routeID}")]
         public IActionResult GetFullRoute(int routeID)

@@ -13,5 +13,6 @@ namespace TravelAgencyHelper.Models
         void Create(TEntity entity);
         bool Update(TEntity entity);
         bool SoftRemove(int id);
+        void Erase(int id);
     }
 }
