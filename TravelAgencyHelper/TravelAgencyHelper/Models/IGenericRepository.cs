@@ -11,7 +11,7 @@ namespace TravelAgencyHelper.Models
         IQueryable<TEntity> Get(Func<TEntity, bool> predicate);
         TEntity FindById(int id);
         void Create(TEntity entity);
-        void Update(TEntity entity);
-        void SoftRemove(TEntity entity);
+        bool Update(TEntity entity);
+        bool SoftRemove(int id);
     }
 }

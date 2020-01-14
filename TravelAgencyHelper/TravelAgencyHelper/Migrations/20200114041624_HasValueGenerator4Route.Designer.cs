@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAgencyHelper.Data;
 
 namespace TravelAgencyHelper.Migrations
 {
     [DbContext(typeof(TravelAgencyContext))]
-    partial class TravelAgencyContextModelSnapshot : ModelSnapshot
+    [Migration("20200114041624_HasValueGenerator4Route")]
+    partial class HasValueGenerator4Route
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,8 +57,7 @@ namespace TravelAgencyHelper.Migrations
                     b.Property<int?>("Deposit");
 
                     b.Property<bool?>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("1");
+                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<string>("Name");
 

@@ -35,17 +35,32 @@ namespace TravelAgencyHelper.Models
             return _context.DaysInRoutes.Where(day => predicate(day));
         }
 
-        public void SoftRemove(DaysInRoute entity)
+        public bool SoftRemove(int id)
         {
-            entity.IsActive = false;
-            _context.Update(entity);
-            _context.SaveChanges();
+            var entity = FindById(id);
+            if (entity != null)
+            {
+                entity.IsActive = false;
+                _context.Update(entity);
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
-        public void Update(DaysInRoute entity)
+        public bool Update(DaysInRoute entity)
         {
-            _context.Update(entity);
-            _context.SaveChanges();
+            if (entity != null)
+            {
+                _context.Update(entity);
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TravelAgencyHelper.Models;
+using TravelAgencyHelper.Helpers;
 
 namespace TravelAgencyHelper.Data
 {
@@ -21,9 +22,10 @@ namespace TravelAgencyHelper.Data
             modelBuilder.Entity<Route>().
                 Property(p => p.IsActive).
                 HasDefaultValueSql("1");
+            //HasValueGenerator<EFTrueValueGenerator>();
             modelBuilder.Entity<DaysInRoute>().
                 Property(p => p.IsActive).
-                HasDefaultValueSql("1");
+                HasDefaultValueSql("1");     
         }
     }
 }

@@ -11,10 +11,10 @@ namespace TravelAgencyHelper.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
-        public int Deposit { get; set; }
+        public int? Price { get; set; }
+        public int? Deposit { get; set; }
         public string Category { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public bool? IsActive { get; set; }
         public ICollection<DaysInRoute> Days { get; set; }
 

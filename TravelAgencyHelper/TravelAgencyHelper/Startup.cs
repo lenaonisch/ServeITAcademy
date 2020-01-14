@@ -44,6 +44,10 @@ namespace TravelAgencyHelper
                 routes.MapRoute(
                     name: "default", 
                     template: "{controller=Route}/{action=Get}/{id?}");
+                //routes.MapRoute(
+                //    name: "search",
+                //    template: "{controller=Route}",
+                //    defaults: new { action = "Get" });
                 routes.MapRoute(
                     name: "FullRoute",
                     template: "{controller}/{action}/{id}"

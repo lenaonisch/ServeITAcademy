@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TravelAgencyHelper.Models;
@@ -21,16 +21,34 @@ namespace TravelAgencyHelper.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Route> Get()
+        public IActionResult Get()
         {
-            return repository.GetAll();
+            return Ok(repository.GetAll());
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public Route Get(int id)
+        public IActionResult Get(int id)
         {
-            return repository.FindById(id);
+            var result = repository.FindById(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        // GET api/<controller>/Name="Сванетия"
+        [HttpGet("{searchString}")]
+        public IActionResult Search(string searchString)
+        {
+            //Route route = Helpers.ControllerHelper<Route>.GetFromQueryString(searchString);
+            var result = repository.Get(route=> route.Name.Contains(searchString));
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // POST api/<controller>
@@ -42,22 +60,43 @@ namespace TravelAgencyHelper.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]Route value)
         {
+            value.Id = id;
+                
+            if (repository.Update(value))
+            {
+                return Ok();
+            }
+
+            return NotFound();
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            
+            if (repository.SoftRemove(id))
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // GET: api/<controller/5
         [HttpGet("{routeID}")]
-        public Route GetFullRoute(int routeID)
+        public IActionResult GetFullRoute(int routeID)
         {
-            return repository.GetRouteWithDays(route=> route.Id == routeID);
+            var result = repository.GetRouteWithDays(route => route.Id == routeID);
+            if (result != null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
         
     }
