@@ -37,6 +37,7 @@ namespace XUnitTravelAgencyHelperTest
         private const string DEL_URL = "api/Route/Delete/";
         private const string SEARCH_URL = "api/Route/Search/";
         private const string UPDATE_URL = "api/Route/Put/";
+        private const string ADD_URL = "api/Route/Post";
 
         private readonly WebApplicationFactory<TravelAgencyHelper.Startup> _factory;
 
@@ -112,6 +113,32 @@ namespace XUnitTravelAgencyHelperTest
             var getResponse = await client.GetAsync(GET_URL + routeId);
             // Assert
             Assert.Equal(System.Net.HttpStatusCode.NotFound, getResponse.StatusCode);            
+        }
+
+        [Fact]
+        //[InlineData("api/Route/Search/Name=Сванетия" )]
+       // [InlineData(5)]
+        public async Task Add()
+        {
+
+            var client = _factory.CreateClient();
+
+            Route route = new Route() { Category = "Восхождение", Name = "ТЕСТ", Price = 100500 };
+            await client.PostAsJsonAsync<Route>(ADD_URL, route);
+
+            var response = await client.GetAsync(SEARCH_URL + route.Name);
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            //Assert.Equal("application/json; charset=utf-8",
+            //    response.Content.Headers.ContentType.ToString());
+            var result = await response.Content.ReadAsAsync<List<Route>>();
+            
+            Assert.True(result.Count > 0);
+            Assert.Equal(result[0].Name, route.Name);
+            Assert.Equal(result[0].Category, route.Category);
+
+            await client.DeleteAsync(DEL_URL + result[0].Id);
         }
     }
     #endregion
