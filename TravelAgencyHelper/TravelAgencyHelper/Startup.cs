@@ -33,6 +33,7 @@ namespace TravelAgencyHelper
             services.AddTransient<IRoutesRepository, EFRoutesRepository>();
             services.AddTransient<IGenericRepository<DaysInRoute>, EFDaysInRoutesRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddOpenApiDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +58,8 @@ namespace TravelAgencyHelper
                 //    template: "{controller=DaysInRoutes}/{action=Get}/{id?}"
                 //    defaults: new { Controller = "Route", action = "GetFullRoute" });
             });
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
             SeedData.EnsurePopulated(app);
         }
     }
