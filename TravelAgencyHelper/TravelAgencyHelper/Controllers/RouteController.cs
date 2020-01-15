@@ -9,7 +9,7 @@ using TravelAgencyHelper.Models;
 
 namespace TravelAgencyHelper.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class RouteController : Controller
     {
         IRoutesRepository repository;
@@ -39,7 +39,7 @@ namespace TravelAgencyHelper.Controllers
         }
 
         // GET api/<controller>/Name="Сванетия"
-        [HttpGet("{searchString}")]
+        [HttpGet("Search/{searchString}")]
         public IActionResult Search(string searchString)
         {
             //Route route = Helpers.ControllerHelper<Route>.GetFromQueryString(searchString);
@@ -87,14 +87,14 @@ namespace TravelAgencyHelper.Controllers
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("Erase/{id}")]
         public void Erase(int id)
         {
             repository.Erase(id);
         }
 
         // GET: api/<controller/5
-        [HttpGet("{routeID}")]
+        [HttpGet("Full/{routeID}")]
         public IActionResult GetFullRoute(int routeID)
         {
             var result = repository.GetRouteWithDays(route => route.Id == routeID);

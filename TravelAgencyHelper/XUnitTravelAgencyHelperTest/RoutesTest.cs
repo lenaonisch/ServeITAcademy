@@ -1,24 +1,3 @@
-//using System;
-//using System.Linq;
-//using Xunit;
-//using Moq;
-//using TravelAgencyHelper.Models;
-//using TravelAgencyHelper.Data;
-
-//namespace XUnitTravelAgencyHelperTest
-//{
-//    public class RoutesTest
-//    {
-//        [Fact]
-//        public void FullRoute()
-//        {
-//            Mock<IRoutesRepository> mock = new Mock<IRoutesRepository>();
-//            mock.Setup(m => m.Get()).Returns(SeedData.routes.AsQueryable<Route>);
-
-
-//        }
-//    }
-//}
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -33,12 +12,13 @@ namespace XUnitTravelAgencyHelperTest
     public class BasicTests
         : IClassFixture<WebApplicationFactory<TravelAgencyHelper.Startup>>
     {
-        private const string GET_URL = "api/Route/Get/";
-        private const string DEL_URL = "api/Route/Delete/";
+        private const string GET_URL = "api/Route/";
+        private const string DEL_URL = "api/Route/";
         private const string ERASE_URL = "api/Route/Erase/";
         private const string SEARCH_URL = "api/Route/Search/";
-        private const string UPDATE_URL = "api/Route/Put/";
-        private const string ADD_URL = "api/Route/Post";
+        private const string FULLROUTE_URL = "api/Route/Full/";
+        private const string UPDATE_URL = "api/Route/";
+        private const string ADD_URL = "api/Route/";
 
         private readonly WebApplicationFactory<TravelAgencyHelper.Startup> _factory;
 
@@ -68,13 +48,13 @@ namespace XUnitTravelAgencyHelperTest
             Route route = await SearchRoute(client, seedIndex);
             route.Price = 100500;
             var response = await client.PutAsync<Route>(url + route.Id, route, new System.Net.Http.Formatting.JsonMediaTypeFormatter());
-            
-            
+
+
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
-            var updatedResponse = await client.GetAsync(GET_URL+route.Id);
+            var updatedResponse = await client.GetAsync(GET_URL + route.Id);
             Route updatedRoute = await updatedResponse.Content.ReadAsAsync<Route>();
-            
+
             Assert.Equal(route.Price, updatedRoute.Price);
         }
 
@@ -113,12 +93,12 @@ namespace XUnitTravelAgencyHelperTest
             var delResponse = await client.DeleteAsync(DEL_URL + routeId);
             var getResponse = await client.GetAsync(GET_URL + routeId);
             // Assert
-            Assert.Equal(System.Net.HttpStatusCode.NotFound, getResponse.StatusCode);            
+            Assert.Equal(System.Net.HttpStatusCode.NotFound, getResponse.StatusCode);
         }
 
         [Fact]
         //[InlineData("api/Route/Search/Name=Сванетия" )]
-       // [InlineData(5)]
+        // [InlineData(5)]
         public async Task Add()
         {
 
@@ -134,10 +114,45 @@ namespace XUnitTravelAgencyHelperTest
             //Assert.Equal("application/json; charset=utf-8",
             //    response.Content.Headers.ContentType.ToString());
             var result = await response.Content.ReadAsAsync<List<Route>>();
-            
+
             Assert.True(result.Count > 0);
             Assert.Equal(result[0].Name, route.Name);
             Assert.Equal(result[0].Category, route.Category);
+
+            await client.DeleteAsync(ERASE_URL + result[0].Id);
+        }
+
+        [Fact]
+        public async Task AddSearchFullRoute()
+        {
+
+            var client = _factory.CreateClient();
+
+            Route route = new Route() { Category = "Восхождение", Name = "ТЕСТ2", Price = 100500 };
+            List<DaysInRoute> days = new List<DaysInRoute>(2)
+            {
+                new DaysInRoute(){ DayBySequence = 1, Description="Test2 day1"},
+                new DaysInRoute(){ DayBySequence = 2, Description="Test2 day2"}
+            };
+            route.Days = days;
+
+            await client.PostAsJsonAsync<Route>(ADD_URL, route);
+
+            var response = await client.GetAsync(FULLROUTE_URL + route.Name);
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+                                                //Assert.Equal("application/json; charset=utf-8",
+                                                //    response.Content.Headers.ContentType.ToString());
+            var result = await response.Content.ReadAsAsync<List<Route>>();
+
+            Assert.True(result.Count > 0);
+            Assert.Equal(result[0].Name, route.Name);
+            Assert.Equal(result[0].Category, route.Category);
+            Assert.Collection(result[0].Days, 
+                item => { Assert.Equal(days[0].Description, item.Description); },
+                item => { Assert.Equal(days[1].Description, item.Description); } 
+                );
 
             await client.DeleteAsync(ERASE_URL + result[0].Id);
         }
