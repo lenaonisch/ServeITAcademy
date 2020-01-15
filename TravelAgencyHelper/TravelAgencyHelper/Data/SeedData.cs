@@ -23,7 +23,7 @@ namespace TravelAgencyHelper.Data
 
         public static DaysInRoute[] daysInRoutes = new DaysInRoute[]
             {
-                    new DaysInRoute() { DayBySequence = 1, Country = "Таджикистан", Description="Day one in Fany" },
+                    new DaysInRoute() { DayBySequence = 1, Country = "Узбекистан", Description="Day one in Fany" },
                     new DaysInRoute() { DayBySequence = 2, Country = "Таджикистан", Description="Day two in Fany" },
                     new DaysInRoute() { DayBySequence = 1, Country = "Грузия", Description="Day one in Georgia" },
                     new DaysInRoute() { DayBySequence = 2, Country = "Грузия", Description="Day two in Georgia" }

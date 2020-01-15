@@ -11,5 +11,6 @@ namespace TravelAgencyHelper.Models
         Route GetRouteWithDays(Func<Route, bool> route);
         IQueryable<Route> GetRoutesWithDays(Func<Route, bool> route);
         IQueryable<Route> Get(Route partialRoute);
+        IQueryable<string> GetCountries(int routeId);
     }
 }

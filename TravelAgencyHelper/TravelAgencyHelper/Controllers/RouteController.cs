@@ -53,9 +53,9 @@ namespace TravelAgencyHelper.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Route value)
+        public IActionResult Post([FromBody]Route value)
         {
-            repository.Create(value);
+            return Ok(repository.Create(value));
         }
 
         // PUT api/<controller>/5
@@ -98,13 +98,25 @@ namespace TravelAgencyHelper.Controllers
         public IActionResult GetFullRoute(int routeID)
         {
             var result = repository.GetRouteWithDays(route => route.Id == routeID);
-            if (result != null)
+            if (result == null)
             {
                 return NotFound();
             }
 
             return Ok(result);
         }
-        
+
+        // GET: api/<controller/5
+        [HttpGet("RouteCountries/{routeID}")]
+        public IActionResult GetCountryList(int routeID)
+        {
+            var result = repository.GetCountries(routeID);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

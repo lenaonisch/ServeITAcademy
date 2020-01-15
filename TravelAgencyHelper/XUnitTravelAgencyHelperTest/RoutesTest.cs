@@ -136,9 +136,11 @@ namespace XUnitTravelAgencyHelperTest
             };
             route.Days = days;
 
-            await client.PostAsJsonAsync<Route>(ADD_URL, route);
+            var routeId = (await client.PostAsJsonAsync<Route>(ADD_URL, route)).Content.ReadAsAsync<long>().Result;
 
-            var response = await client.GetAsync(FULLROUTE_URL + route.Name);
+            
+
+            var response = await client.GetAsync(FULLROUTE_URL + routeId);
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299

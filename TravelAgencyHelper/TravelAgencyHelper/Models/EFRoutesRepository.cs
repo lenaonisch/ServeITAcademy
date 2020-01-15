@@ -28,5 +28,11 @@ namespace TravelAgencyHelper.Models
             IQueryable<Route> query = _context.Routes.AsNoTracking().Where(route => predicate(route) && (bool)route.IsActive);
             return query.Include(route => route.Days);
         }
+
+        public IQueryable<string> GetCountries(int routeId)
+        {
+            return (from r in _context.DaysInRoutes.Where(route => route.RouteId == routeId)
+                   select r.Country).Distinct();
+        }
     }
 }

@@ -42,10 +42,11 @@ namespace TravelAgencyHelper.Models
             return _dbSet.Where(t => t.Id == id && (bool)t.IsActive).FirstOrDefault();
         }
 
-        public void Create(TEntity entity)
+        public long Create(TEntity entity)
         {
             _dbSet.Add(entity);
             _context.SaveChanges();
+            return entity.Id;
         }
 
         public bool Update(TEntity entity)
